@@ -1,0 +1,22 @@
+﻿syntax = "proto3"; /*Protobuf 3 sürümünü kullanacağımızı beklirttik*/
+option csharp_namespace = "Server"; /*Oluşturulacak C# sınıflarımızın Server isimli namespace de yer alacağını belirttik*/
+package server; /* Bu satır protobuf dosyasının server adlı bir paket içinde olduğunu belirtir
+				Bu, kodu organize etmeye ve isim çakışmalarını önlemeye yardımcı olur */
+import "google/protobuf/wrappers.proto"; /* google.protobuf.StringValue tipini kullanabilmek için bu dosyayı import ettik */
+
+service Greeter { /* Greeter isimli bir gRPC servis oluşturduk*/
+	rpc SayHelloUnary(HelloRequest) returns (HelloReply); /* Unary RPC Metot*/
+	rpc SayHelloServerStream(HelloRequest) returns (stream HelloReply); /* Server Stream RPC Metot*/
+	rpc SayHelloClientStream(stream HelloRequest) returns (HelloReply); /* Client Stream RPC Metot*/
+	rpc SayHelloBidirectionalStream(stream HelloRequest) returns (stream HelloReply); /* Bi-directional Stream RPC Metot*/
+}
+
+message HelloRequest {
+	string first_name = 1;
+	string last_name = 2;
+	google.protobuf.StringValue mother_name = 3; /*nullable string*/
+}
+
+message HelloReply {
+	string message = 1;
+}
