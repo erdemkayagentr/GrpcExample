@@ -7,7 +7,7 @@ namespace Client.Apis;
 public static class GreetMinimalApi
 {
     // Minimal API endpointlerini eklemek için extension metodu.
-    public static void UseGreetEndPoints(this WebApplication app)
+    public static void UseGreetEndPoints(this IEndpointRouteBuilder app)
     {
         // Tüm greet endpointlerini gruplayarak organize eder.
         var group = app.MapGroup("greet");
