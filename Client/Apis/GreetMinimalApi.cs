@@ -7,10 +7,10 @@ namespace Client.Apis;
 public static class GreetMinimalApi
 {
     // Minimal API endpointlerini eklemek için extension metodu.
-    public static void UseGreetEndPoints(this IEndpointRouteBuilder app)
+    public static void UseGreetEndPoints(this IEndpointRouteBuilder routes)
     {
         // Tüm greet endpointlerini gruplayarak organize eder.
-        var group = app.MapGroup("greet");
+        var group = routes.MapGroup("greet");
 
         // Unary gRPC çağrısını gerçekleştiren GET endpointi.
         group.MapGet("unary", UnaryExample).WithName("unary").WithOpenApi();
